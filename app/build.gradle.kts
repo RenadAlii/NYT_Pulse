@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleDevtoolsKsp)
     alias(libs.plugins.daggerHiltAndroid)
+    alias(libs.plugins.jetbrainsKotlinSerialization)
 }
 
 android {
@@ -23,12 +24,12 @@ android {
             useSupportLibrary = true
         }
 
-       //load the values from .properties file
+        // load the values from .properties file
         val keystoreFile = project.rootProject.file("apikeys.properties")
         val properties = Properties()
         properties.load(keystoreFile.inputStream())
 
-        //return empty key in case something goes wrong
+        // return empty key in case something goes wrong
         val ak = properties.getProperty("A_K") ?: ""
         buildConfigField(type = "String", name = "A_K", value = ak)
     }
@@ -38,7 +39,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -54,7 +55,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -101,13 +102,15 @@ dependencies {
     implementation(libs.lottie)
     testImplementation(libs.mockk)
     testImplementation(libs.mockk.android)
-    testImplementation(libs.glide.compose)
     testImplementation(libs.androidx.arch.core.testing)
     testImplementation(libs.fixture)
+    testImplementation(libs.hilt.test.android)
+    implementation(libs.coil.compose)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.compose.lifecycle)
 }
 
 ksp {
     arg("dagger.hilt.android.internal.disableAndroidSuperclassValidation", "true")
     arg("room.schemaLocation", project.layout.buildDirectory.dir("schemas").get().asFile.absolutePath)
 }
-
