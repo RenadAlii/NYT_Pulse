@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath(libs.gradle)
         classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.kotlin.save.args.gradle.plugin)
     }
 }
 plugins {
@@ -15,5 +16,6 @@ plugins {
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.daggerHiltAndroid) apply false
     alias(libs.plugins.googleDevtoolsKsp) apply false
+    alias(libs.plugins.jetbrainsKotlinSerialization) apply false
 }
 

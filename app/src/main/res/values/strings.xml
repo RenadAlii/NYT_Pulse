@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NYT Pulse</string>
+    <string name="app_bar_title">Most Viewed</string>
 </resources>
