@@ -17,7 +17,7 @@ This application displays the most viewed articles using two screens: a list scr
 ### Clone the Repository
 Clone the repository to your local machine:
 ```sh
-git clone https://github.com/your-repo-name.git
+git clone https://github.com/RenadAlii/NYT_Pulse.git
 ```
 
 ### API Key Configuration
